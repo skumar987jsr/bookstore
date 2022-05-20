@@ -1,6 +1,7 @@
 <?php
     session_start();
-     if($_SESSION["email"]){
+    $email = $_SESSION["email"] ?? null;
+     if($email){
          $login = 1;
     //     echo $_SESSION["uname"].", Welcome To Home Page !!!";
      }
@@ -8,8 +9,7 @@
          $login = 0;
       //  header("Location: login3.php");
      }
-?> 
-<!-- <a href="logout.php">Logout</a> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -1203,12 +1203,13 @@
     </section>
 
     <script type="text/javascript">
-        let x = "<?php echo"$login"?>";
-        console.log(x)
-        if(login){
+        let isLogged = +("<?php echo"$login"?>")? true : false;
+        console.log(isLogged)
+        if(isLogged){
            const btn = document.querySelector('#login-btn');
            btn.classList.remove("fa", "fa-user");
            btn.textContent = "logout";
+           btn.href = "logout.php";
         } 
 
     </script>
